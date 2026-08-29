@@ -63,7 +63,7 @@ function! s:on_lsp_buffer_enabled() abort
     nmap <buffer> gS <plug>(lsp-workspace-symbol-search)
     nmap <buffer> gr <plug>(lsp-references)
     nmap <buffer> gi <plug>(lsp-implementation)
-    nmap <buffer> gt <plug>(lsp-type-definition)
+    nmap <buffer> gy <plug>(lsp-type-definition)
     nmap <buffer> <leader>rn <plug>(lsp-rename)
     nmap <buffer> [g <plug>(lsp-previous-diagnostic)
     nmap <buffer> ]g <plug>(lsp-next-diagnostic)
@@ -92,18 +92,32 @@ function! TinymistCmd(cmd, ...) abort
         \ })
 endfunction
 
+function! TinymistPinMain() abort
+    call lsp#send_request('tinymist', {
+        \ 'method': 'workspace/executeCommand',
+        \ 'params': {
+        \   'command': 'tinymist.pinMain',
+        \   'arguments': [expand('%:p')]
+        \ },
+        \ 'on_notification': {data -> execute('echom string(data)')}
+        \ })
+endfunction
+
+function! TinymistUnpinMain() abort
+    call lsp#send_request('tinymist', {
+        \ 'method': 'workspace/executeCommand',
+        \ 'params': {
+        \   'command': 'tinymist.pinMain',
+        \   'arguments': [v:null]
+        \ },
+        \ 'on_notification': {data -> execute('echom string(data)')}
+        \ })
+endfunction
+
 command! TypstPreviewStart call TinymistCmd('tinymist.startDefaultPreview')
 command! TypstPreviewStop  call TinymistCmd('tinymist.doKillPreview', 'default_preview')
-command! TypstPinMain      call TinymistCmd('tinymist.pinMainToCurrent')
-command! TypstUnpinMain    call TinymistCmd('tinymist.unpinMain')
-
-augroup TypstLSPMappings
-    autocmd!
-    autocmd FileType typst nnoremap <buffer> <leader>tp :TypstPreviewStart<CR>
-    autocmd FileType typst nnoremap <buffer> <leader>ts :TypstPreviewStop<CR>
-    autocmd FileType typst nnoremap <buffer> <leader>pm :TypstPinMain<CR>
-    autocmd FileType typst nnoremap <buffer> <leader>pu :TypstUnpinMain<CR>
-augroup END
+command! TypstPinMain   call TinymistPinMain()
+command! TypstUnpinMain call TinymistUnpinMain()
 
 let g:lsp_semantic_enabled = 1
 

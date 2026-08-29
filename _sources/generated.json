@@ -1,0 +1,16 @@
+{
+    "nixpkgs": {
+        "cargoLock": null,
+        "date": null,
+        "extract": null,
+        "name": "nixpkgs",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "sha256": "sha256-IkjmqLoWzeqBAi1VIkdhDLMGjQDJ4suEDp59Zwxpswg=",
+            "type": "tarball",
+            "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1062397.9fbb54b33e91/nixexprs.tar.zst"
+        },
+        "version": "26.11pre1062397.9fbb54b33e91"
+    }
+}

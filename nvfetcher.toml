@@ -1,0 +1,3 @@
+[nixpkgs]
+src.cmd = "curl -s -o /dev/null -w '%{url_effective}' -L --range 0-0 https://channels.nixos.org/nixos-unstable/nixexprs.tar.zst | grep -oP 'nixos-\\K[^/]+(?=/nixexprs)'"
+fetch.tarball = "https://releases.nixos.org/nixos/unstable/nixos-$ver/nixexprs.tar.zst"

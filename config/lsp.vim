@@ -81,12 +81,12 @@ augroup lsp_install
     autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 augroup END
 
-function! TinymistCmd(cmd) abort
+function! TinymistCmd(cmd, ...) abort
     call lsp#send_request('tinymist', {
         \ 'method': 'workspace/executeCommand',
         \ 'params': {
         \   'command': a:cmd,
-        \   'arguments': []
+        \   'arguments': a:000
         \ },
         \ 'on_notification': {data -> execute('echom string(data)')}
         \ })

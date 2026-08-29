@@ -11,3 +11,12 @@ inoremap <expr> <cr>    pumvisible() ? "\<C-y>" : "\<cr>"
 let g:asyncomplete_auto_popup = 1
 
 let g:asyncomplete_popup_delay = 200
+
+inoremap ( ()<Left>
+inoremap [ []<Left>
+inoremap { {}<Left>
+inoremap " ""<Left>
+inoremap ' ''<Left>
+inoremap ` ``<Left>
+
+inoremap {<CR> {<CR>}<Esc>O

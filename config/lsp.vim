@@ -87,7 +87,7 @@ function! TinymistCmd(cmd) abort
         \ 'params': {
         \   'command': a:cmd,
         \   'arguments': []
-        \ }
+        \ },
         \ 'on_notification': {data -> execute('echom string(data)')}
         \ })
 endfunction

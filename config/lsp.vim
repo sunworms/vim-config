@@ -106,4 +106,5 @@ augroup END
 
 let g:lsp_semantic_enabled = 1
 
+set updatetime=100
 set completeopt=menu,menuone,noinsert,noselect

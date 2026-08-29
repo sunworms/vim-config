@@ -18,7 +18,7 @@ if executable('tinymist')
     au User lsp_setup call lsp#register_server({
         \ 'name': 'tinymist',
         \ 'cmd': {server_info->['tinymist']},
-        \ 'allowlist': ['typ'],
+        \ 'allowlist': ['typst'],
         \ })
 endif
 

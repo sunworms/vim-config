@@ -92,7 +92,7 @@ function! TinymistCmd(cmd) abort
 endfunction
 
 command! TypstPreviewStart call TinymistCmd('tinymist.startDefaultPreview')
-command! TypstPreviewStop  call TinymistCmd('tinymist.killPreview')
+command! TypstPreviewStop  call TinymistCmd('tinymist.doKillPreview')
 command! TypstPinMain      call TinymistCmd('tinymist.pinMainToCurrent')
 command! TypstUnpinMain    call TinymistCmd('tinymist.unpinMain')
 

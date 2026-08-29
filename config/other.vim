@@ -8,8 +8,8 @@ inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <cr>    pumvisible() ? "\<C-y>" : "\<cr>"
 
+let g:vimtex_view_method = 'zathura'
 let g:asyncomplete_auto_popup = 1
-
 let g:asyncomplete_popup_delay = 200
 
 inoremap ( ()<Left>

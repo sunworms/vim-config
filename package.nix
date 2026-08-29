@@ -8,6 +8,7 @@ pkgs.vim-full.customize {
       ctrlp-vim
       asyncomplete-vim
       asyncomplete-lsp-vim
+      vimtex
     ];
     opt = [];
   };

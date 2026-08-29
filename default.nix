@@ -16,8 +16,7 @@
   vimRcFile = finalPkgs.runCommand "vimrc.vim" {} ''
     cat ${vim-dir}/* > $out
   '';
-in
-  (import ./package.nix {
-    pkgs = finalPkgs;
-    inherit vimRcFile;
-  })
+in (import ./package.nix {
+  pkgs = finalPkgs;
+  inherit vimRcFile;
+})

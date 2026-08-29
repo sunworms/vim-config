@@ -1,5 +1,7 @@
-{ pkgs, vimRcFile }:
-
+{
+  pkgs,
+  vimRcFile,
+}:
 pkgs.vim-full.customize {
   vimrcConfig.customRC = builtins.readFile vimRcFile;
   vimrcConfig.packages.myVimPackage = with pkgs.vimPlugins; {

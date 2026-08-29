@@ -1,3 +1,22 @@
+let s:lsp_loaded = 0
+function! s:load_lsp() abort
+  if s:lsp_loaded | return | endif
+  let s:lsp_loaded = 1
+  packadd vim-lsp
+  packadd asyncomplete.vim
+  packadd asyncomplete-lsp.vim
+  call lsp#enable()
+endfunction
+
+augroup lazy_lsp
+  au!
+  au FileType nix,typst,tex,rust,go,java call s:load_lsp()
+augroup END
+
+let g:lsp_diagnostics_virtual_text_enabled = 0
+let g:lsp_diagnostics_float_cursor = 0
+let g:lsp_semantic_enabled = 0
+
 if executable('nixd')
     au User lsp_setup call lsp#register_server({
         \ 'name': 'nixd',

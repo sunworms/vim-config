@@ -1,4 +1,4 @@
-let g:journal_dir = expand('~/Documents/gdrive/journal')
+let g:journal_dir = $HOME . '/Documents/gdrive/journal'
 
 
 function! Journal(...) abort
@@ -144,7 +144,6 @@ function! JournalGrep(...) abort
 
     let pattern = join(a:000, ' ')
 
-    " Google Drive is touched HERE and nowhere earlier.
     let files = glob(g:journal_dir . '/**/*.md', 1, 1)
 
     if empty(files)

@@ -3,7 +3,7 @@
   vimRcFile,
 }:
 pkgs.vim-full.customize {
-  vimrcConfig.customRC = builtins.readFile vimRcFile;
+  vimrcConfig.customRC = vimRcFile;
   vimrcConfig.packages.myVimPackage = with pkgs.vimPlugins; {
     start = [
       ctrlp-vim

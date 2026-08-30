@@ -13,9 +13,10 @@
         config.allowUnfree = true;
       };
   vim-dir = ./config;
-  vimRcFile = finalPkgs.runCommand "vimrc.vim" {} ''
-    cat ${vim-dir}/* > $out
-  '';
+  vimRcFile = builtins.concatStringsSep "\n" (
+    map (f: builtins.readFile (vim-dir + "/${f}"))
+      (builtins.attrNames (builtins.readDir vim-dir))
+  );
 in
   finalPkgs.mkShell {
     packages = [

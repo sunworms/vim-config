@@ -137,3 +137,8 @@ command! TypstUnpinMain call TinymistUnpinMain()
 let g:lsp_semantic_enabled = 1
 
 set completeopt=menu,menuone,noinsert,noselect
+
+augroup lsp_typst_insert_sync
+    autocmd!
+    autocmd TextChangedI *.typ call lsp#ensure_flush_all(bufnr('%'), lsp#get_allowed_servers(bufnr('%')))
+augroup END

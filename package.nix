@@ -8,6 +8,7 @@ pkgs.vim-full.customize {
     start = [
       ctrlp-vim
       vimtex
+      vim-signify
     ];
     opt = [
       vim-lsp

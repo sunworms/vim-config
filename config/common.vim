@@ -37,6 +37,7 @@ set showmatch
 set hlsearch
 set gdefault
 
+set updatetime=100
 set number
 syntax on
 let mapleader = ","

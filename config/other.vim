@@ -1,7 +1,3 @@
-let g:ctrlp_map = '<c-t>'
-
-let g:ctrlp_max_height = 30
-
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"

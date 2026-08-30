@@ -6,7 +6,7 @@ pkgs.vim-full.customize {
   vimrcConfig.customRC = vimRcFile;
   vimrcConfig.packages.myVimPackage = with pkgs.vimPlugins; {
     start = [
-      ctrlp-vim
+      fzf-vim
       vimtex
       vim-signify
     ];

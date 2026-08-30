@@ -1,40 +1,6 @@
 let g:journal_dir = expand('~/Documents/gdrive/journal')
 
 
-function! s:JournalFile(date) abort
-    let year  = strpart(a:date, 0, 4)
-    let month = strpart(a:date, 5, 2)
-    return g:journal_dir . '/' . year . '/' . month . '/' . a:date . '.md'
-endfunction
-
-
-function! s:EnsureDir(path) abort
-    if !isdirectory(a:path)
-        call mkdir(a:path, 'p')
-    endif
-endfunction
-
-
-function! s:JournalTemplate(date) abort
-    let weekday = strftime('%A', strptime('%Y-%m-%d', a:date))
-
-    return [
-                \ '# ' . weekday . ', ' . a:date,
-                \ '',
-                \ '## Tasks',
-                \ '',
-                \ '- [ ] ',
-                \ '',
-                \ '## Notes',
-                \ '',
-                \ '',
-                \ '## Thoughts',
-                \ '',
-                \ ''
-                \ ]
-endfunction
-
-
 function! Journal(...) abort
     if a:0
         let date = a:1
@@ -42,13 +8,40 @@ function! Journal(...) abort
         let date = strftime('%Y-%m-%d')
     endif
 
-    let file = s:JournalFile(date)
-    let dir  = fnamemodify(file, ':h')
+    let year  = strpart(date, 0, 4)
+    let month = strpart(date, 5, 2)
 
-    call s:EnsureDir(dir)
+    let dir  = g:journal_dir . '/' . year . '/' . month
+    let file = dir . '/' . date . '.md'
+
+    if !isdirectory(dir)
+        call mkdir(dir, 'p')
+    endif
 
     if !filereadable(file)
-        call writefile(s:JournalTemplate(date), file)
+        let weekday = strftime('%A', strptime('%Y-%m-%d', date))
+
+        call writefile([
+                    \ '# ' . weekday . ', ' . date,
+                    \ '',
+                    \ '## Tasks',
+                    \ '',
+                    \ '- [ ] ',
+                    \ '',
+                    \ '## Research',
+                    \ '',
+                    \ '### Progress',
+                    \ '',
+                    \ '### Questions',
+                    \ '',
+                    \ '### Ideas',
+                    \ '',
+                    \ '## Notes',
+                    \ '',
+                    \ '## Thoughts',
+                    \ '',
+                    \ ''
+                    \ ], file)
     endif
 
     execute 'edit ' . fnameescape(file)
@@ -150,6 +143,8 @@ function! JournalGrep(...) abort
     endif
 
     let pattern = join(a:000, ' ')
+
+    " Google Drive is touched HERE and nowhere earlier.
     let files = glob(g:journal_dir . '/**/*.md', 1, 1)
 
     if empty(files)

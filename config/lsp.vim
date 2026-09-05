@@ -127,7 +127,7 @@ function! TypstPreviewStart() abort
     endif
     let s:typst_preview_job = job_start(
         \ ['tinymist', 'preview', expand('%:p'),
-        \  '--open', '--partial-rendering', '--invert-colors=auto'],
+        \  '--open', '--partial-rendering=true', '--invert-colors=auto'],
         \ {'out_io': 'null', 'err_io': 'null'})
 endfunction
 

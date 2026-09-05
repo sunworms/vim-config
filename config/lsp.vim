@@ -134,7 +134,7 @@ command! TypstPreviewStop  call TinymistCmd('tinymist.doKillPreview', 'default_p
 command! TypstPinMain   call TinymistPinMain()
 command! TypstUnpinMain call TinymistUnpinMain()
 
-let g:lsp_semantic_enabled = 0
+let g:lsp_semantic_enabled = 1
 
 set completeopt=menu,menuone,noinsert,noselect
 

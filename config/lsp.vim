@@ -96,17 +96,6 @@ augroup lsp_install
     autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 augroup END
 
-function! TinymistCmd(cmd, ...) abort
-    call lsp#send_request('tinymist', {
-        \ 'method': 'workspace/executeCommand',
-        \ 'params': {
-        \   'command': a:cmd,
-        \   'arguments': a:000
-        \ },
-        \ 'on_notification': {data -> execute('echom string(data)')}
-        \ })
-endfunction
-
 function! TinymistPinMain() abort
     call lsp#send_request('tinymist', {
         \ 'method': 'workspace/executeCommand',
@@ -129,8 +118,34 @@ function! TinymistUnpinMain() abort
         \ })
 endfunction
 
-command! TypstPreviewStart call TinymistCmd('tinymist.startDefaultPreview')
-command! TypstPreviewStop  call TinymistCmd('tinymist.doKillPreview', 'default_preview')
+let s:typst_preview_job = v:null
+
+function! TypstPreviewStart() abort
+    if s:typst_preview_job isnot v:null && job_status(s:typst_preview_job) ==# 'run'
+        echom 'Typst preview already running'
+        return
+    endif
+    let s:typst_preview_job = job_start(
+        \ ['tinymist', 'preview', expand('%:p'),
+        \  '--open', '--partial-rendering', '--invert-colors=auto'],
+        \ {'out_io': 'null', 'err_io': 'null'})
+endfunction
+
+function! TypstPreviewStop() abort
+    if s:typst_preview_job isnot v:null
+        call job_stop(s:typst_preview_job)
+        let s:typst_preview_job = v:null
+    endif
+endfunction
+
+command! TypstPreviewStart call TypstPreviewStart()
+command! TypstPreviewStop  call TypstPreviewStop()
+
+augroup typst_preview_cleanup
+    autocmd!
+    autocmd VimLeavePre * call TypstPreviewStop()
+augroup END
+
 command! TypstPinMain   call TinymistPinMain()
 command! TypstUnpinMain call TinymistUnpinMain()
 
@@ -138,7 +153,7 @@ let g:lsp_semantic_enabled = 1
 
 set completeopt=menu,menuone,noinsert,noselect
 
-augroup lsp_typst_insert_sync
+augroup typst_cli_live_sync
     autocmd!
-    autocmd TextChangedI *.typ call lsp#ensure_flush_all(bufnr('%'), lsp#get_allowed_servers(bufnr('%')))
+    autocmd TextChanged,TextChangedI *.typ silent! update
 augroup END

@@ -150,6 +150,7 @@ command! TypstPinMain   call TinymistPinMain()
 command! TypstUnpinMain call TinymistUnpinMain()
 
 let g:lsp_semantic_enabled = 1
+let g:markdown_fenced_languages = ["preview=$FILETYPE"]
 
 set completeopt=menu,menuone,noinsert,noselect
 

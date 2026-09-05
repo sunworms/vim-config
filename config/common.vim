@@ -6,7 +6,6 @@ let g:loaded_getscriptPlugin = 1
 let g:loaded_logipat = 1
 let g:loaded_rrhelper = 1
 let g:loaded_2html_plugin = 1
-let g:loaded_tutor_mode_plugin = 1
 let g:loaded_spellfile_plugin = 1
 
 set nocompatible

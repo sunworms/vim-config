@@ -16,3 +16,9 @@ inoremap ' ''<Left>
 inoremap ` ``<Left>
 
 inoremap {<CR> {<CR>}<Esc>O
+
+autocmd FileType nix setlocal formatprg=alejandra\ --quiet
+autocmd FileType typst setlocal formatprg=typstyle
+
+autocmd BufWritePre *.nix normal! gggqG``
+autocmd BufWritePre *.typ normal! gggqG``

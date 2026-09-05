@@ -8,7 +8,7 @@ pkgs.vim-full.customize {
     start = [
       fzf-vim
       vimtex
-      vim-signify
+      vim-gitgutter
     ];
     opt = [
       vim-lsp

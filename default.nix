@@ -15,7 +15,7 @@
   vim-dir = ./config;
   vimRcFile = builtins.concatStringsSep "\n" (
     map (f: builtins.readFile (vim-dir + "/${f}"))
-      (builtins.attrNames (builtins.readDir vim-dir))
+    (builtins.attrNames (builtins.readDir vim-dir))
   );
 in (import ./package.nix {
   pkgs = finalPkgs;

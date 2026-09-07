@@ -20,5 +20,11 @@ inoremap {<CR> {<CR>}<Esc>O
 autocmd FileType nix setlocal formatprg=alejandra\ --quiet
 autocmd FileType typst setlocal formatprg=typstyle
 
-autocmd BufWritePre *.nix normal! gggqG``
-autocmd BufWritePre *.typ normal! gggqG``
+function! s:FormatBuffer() abort
+  if !empty(&formatprg) && executable(split(&formatprg)[0])
+    let view = winsaveview()
+    silent! keepjumps normal! gggqG
+    call winrestview(view)
+  endif
+endfunction
+autocmd BufWritePre *.nix,*.typ call s:FormatBuffer()

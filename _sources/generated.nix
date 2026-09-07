@@ -8,11 +8,11 @@
 {
   nixpkgs = {
     pname = "nixpkgs";
-    version = "801bef6abd86b91e51083066b83fb354a11fc640";
+    version = "c043004d1c6985732bcc1cbc5a9c9aecbbb4e0f0";
     src = fetchTarball {
-      url = "https://github.com/NixOS/nixpkgs/archive/801bef6abd86b91e51083066b83fb354a11fc640.tar.gz";
-      sha256 = "sha256-hLD4l3QOGBQhkVp3mQ2lJ/YbEi99qUgKapb40KovZ88=";
+      url = "https://github.com/NixOS/nixpkgs/archive/c043004d1c6985732bcc1cbc5a9c9aecbbb4e0f0.tar.gz";
+      sha256 = "sha256-7QYjT2vHLuX9Z1pdxHXDKCbh1CR3D/2rywB9Tx0MPRg=";
     };
-    date = "2026-09-04";
+    date = "2026-09-05";
   };
 }

@@ -17,9 +17,6 @@ let &t_EI = "\e[2 q"
 let &t_SI = "\e[6 q"
 let &t_SR = "\e[4 q"
 
-set tabstop=2
-set shiftwidth=2
-set softtabstop=2
 set expandtab
 set smarttab
 set shiftround
@@ -38,7 +35,6 @@ set smartcase
 set incsearch
 set showmatch
 set hlsearch
-set gdefault
 
 set updatetime=100
 set number

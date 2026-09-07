@@ -218,6 +218,6 @@ nnoremap <leader>T :JournalTimestamp<CR>
 nnoremap <leader>y :Yesterday<CR>
 nnoremap <leader>o :Tomorrow<CR>
 
-nnoremap <leader>f :JournalGrep 
+nnoremap <leader>fj :JournalGrep
 nnoremap <leader>u :JournalTodos<CR>
 nnoremap <leader>d :JournalDone<CR>

@@ -13,6 +13,10 @@ set termguicolors
 filetype plugin indent on
 syntax on
 
+let &t_EI = "\e[2 q"
+let &t_SI = "\e[6 q"
+let &t_SR = "\e[4 q"
+
 set tabstop=2
 set shiftwidth=2
 set softtabstop=2

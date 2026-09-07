@@ -6,11 +6,13 @@ pkgs.vim-full.customize {
   vimrcConfig.customRC = vimRcFile;
   vimrcConfig.packages.myVimPackage = with pkgs.vimPlugins; {
     start = [
-      fzf-vim
       vimtex
       vim-gitgutter
+      vim-sleuth
     ];
     opt = [
+      fzf-wrapper
+      fzf-vim
       vim-lsp
       asyncomplete-vim
       asyncomplete-lsp-vim
